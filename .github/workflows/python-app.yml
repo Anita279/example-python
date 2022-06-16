@@ -28,6 +28,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install pylint
+        pip install sphinx
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
@@ -50,3 +51,8 @@ jobs:
         # A file, directory or wildcard pattern that describes what to upload
         path: index/house.py
         # The desired behavior if no files are found using the provided path.
+        
+    - name: Documentation
+      run: |
+        sphinx-apidoc -o . index
+        make html
